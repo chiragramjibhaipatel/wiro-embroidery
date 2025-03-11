@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "60808a6b186537c707809c5245654d2f"
-application_url = "https://supervision-advance-postage-finals.trycloudflare.com"
+application_url = "https://gel-malpractice-illness-blade.trycloudflare.com"
 embedded = true
 name = "embroidery"
 handle = "embroidery-3"
@@ -23,9 +23,9 @@ scopes = "read_products,write_cart_transforms"
 
 [auth]
 redirect_urls = [
-  "https://supervision-advance-postage-finals.trycloudflare.com/auth/callback",
-  "https://supervision-advance-postage-finals.trycloudflare.com/auth/shopify/callback",
-  "https://supervision-advance-postage-finals.trycloudflare.com/api/auth/callback"
+  "https://gel-malpractice-illness-blade.trycloudflare.com/auth/callback",
+  "https://gel-malpractice-illness-blade.trycloudflare.com/auth/shopify/callback",
+  "https://gel-malpractice-illness-blade.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]
@@ -34,3 +34,4 @@ embedded = false
 [build]
 dev_store_url = "wiro-trial-piece-chirag.myshopify.com"
 automatically_update_urls_on_dev = true
+include_config_on_deploy = true

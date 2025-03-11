@@ -3,6 +3,30 @@ query RunInput {
     lines {
       id
       quantity
+      hasEmbroidery: attribute(key: "_has_embroidery"){
+        value
+      }
+      letterColor: attribute(key: "Letter Color"){
+        value
+      }
+      cost{
+        amountPerQuantity {
+          amount
+        }
+      }
+      merchandise {
+        __typename
+        ... on ProductVariant{
+          id
+          product {
+            id
+            embroideryCost: metafield(namespace: "custom", key: "embroidery_cost") {
+              value
+            }
+          }
+        }
+      }
+
     }
   }
 }
