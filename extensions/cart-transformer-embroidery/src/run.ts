@@ -8,7 +8,7 @@ const NO_CHANGES: FunctionRunResult = {
   operations: [],
 };
 
-function updatePrice(line: CartLine) {
+function updatePrice(line: CartLine, presentmentCurrencyRate: number) {
   const { merchandise } = line;
   if (merchandise.__typename !== "ProductVariant") {
     return false;
@@ -37,13 +37,14 @@ function updatePrice(line: CartLine) {
     console.error("No additional cost found");
     return false;
   }
+  additionalCost = additionalCost * presentmentCurrencyRate;
   return {
     update: {
       cartLineId: line.id,
       price: {
         adjustment: {
           fixedPricePerUnit: {
-            amount: parseFloat(line.cost.amountPerQuantity.amount) + additionalCost,
+            amount: (parseFloat(line.cost.amountPerQuantity.amount) + additionalCost),
           },
         },
       },
@@ -52,9 +53,9 @@ function updatePrice(line: CartLine) {
 }
 
 export function run(input: RunInput): FunctionRunResult {
-  const { cart: { lines } } = input;
+  const { cart: { lines }, presentmentCurrencyRate } = input;
 
   return {
-    operations: lines.map(line => updatePrice(line)).filter(Boolean)
+    operations: lines.map(line => updatePrice(line, presentmentCurrencyRate)).filter(Boolean)
   };
 };
